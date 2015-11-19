@@ -6,6 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('toggl-summary');
+  this.route('home', { path: '/' });
 });
 
 export default Router;
