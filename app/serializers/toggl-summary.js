@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-
+import uuid from "ember-uuid/utils/uuid-generator";
 
 export default DS.JSONSerializer.extend({
   attrs: {
@@ -7,6 +7,6 @@ export default DS.JSONSerializer.extend({
   },
 
   extractId: function(modelClass, payload) {
-    return modelClass + payload + (new Date()).getTime();
+    return uuid.v1();
   }
 });
