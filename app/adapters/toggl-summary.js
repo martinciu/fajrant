@@ -8,7 +8,7 @@ export default DS.JSONAPIAdapter.extend({
   urlForQueryRecord: function(query, modelName) {
     query["user_agent"] = "fajrant"
     query["workspace_id"] = this.session.get("settings.workspaceId");
-    query["user_id"] = this.session.get("settings.userId");
+    query["user_ids"] = this.session.get("settings.userId");
 
     return this._super(query, modelName);
   },
