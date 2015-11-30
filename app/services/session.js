@@ -9,16 +9,15 @@ export default Ember.Service.extend({
   },
 
   isAuthorized: function() {
-    if (this.get("settings.togglApiKey")) {
+    if (this.get("settings.userId")) {
       return true;
     } else {
       return false;
     }
   },
 
-  saveApiKey: function(apiKey) {
-    this.settings.set("togglApiKey", apiKey);
-    this.save();
+  save: function() {
+    localStorage.fajrantSettings = JSON.stringify(this.get("settings"));
   },
 
   load: function() {
@@ -28,9 +27,5 @@ export default Ember.Service.extend({
     }
     let settings = Ember.Object.create(settingsAttributes);
     this.set("settings", settings);
-  },
-
-  save: function() {
-    localStorage.fajrantSettings = JSON.stringify(this.get("settings"));
   }
 });
