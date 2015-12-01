@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   total: DS.attr('duration'),
@@ -6,14 +7,12 @@ export default DS.Model.extend({
   month: Ember.inject.service("month"),
 
   time: function() {
-    let d = this.get("total")
+    let d = this.get("total");
     return Math.round(d.asHours())+ ":" + d.minutes() + ":" + d.seconds();
   }.property("total"),
 
   status: function() {
     return this.get("month.workDaysDone") + "/" + this.get("month.workDaysTotal");
-  }.property("total", "month"),
-
-
+  }.property("total", "month")
 
 });

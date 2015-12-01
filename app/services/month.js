@@ -5,8 +5,7 @@ export default Ember.Service.extend({
   startsOn: false,
 
   init: function() {
-    // this.set("startsOn", moment().startOf("month"));
-    this.set("startsOn", moment("2015-11-01"));
+    this.set("startsOn", moment().startOf("month"));
   },
 
   workDaysDone: function() {
@@ -23,7 +22,7 @@ export default Ember.Service.extend({
   }.property("startsOn", "endsOn"),
 
   endsOn: function() {
-    return moment(this.get("startsOn")).endOf("month")
+    return moment(this.get("startsOn")).endOf("month");
   }.property("startsOn")
 
 });
