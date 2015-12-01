@@ -4,11 +4,11 @@ export default DS.Model.extend({
   seconds: DS.attr('number'),
 
   hours: function() {
-    return Math.round(this.get("minutes")/60);
+    return Math.floor(this.get("minutes")/60);
   }.property("seconds"),
 
   minutes: function() {
-    return Math.round(this.get("seconds")/60/1000);
+    return Math.floor(this.get("seconds")/60/1000);
   }.property("seconds"),
 
   time: function() {
