@@ -1,31 +1,12 @@
 import Ember from 'ember';
+// import Settings from '../models/settings';
 
 export default Ember.Service.extend({
-  settings: false,
+  store: Ember.inject.service("store"),
+  settings: null,
 
-  init: function() {
-    this._super(...arguments);
-    this.load();
-  },
-
-  isAuthorized: function() {
-    if (this.get("settings.userId")) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-
-  save: function() {
-    localStorage.fajrantSettings = JSON.stringify(this.get("settings"));
-  },
-
-  load: function() {
-    let settingsAttributes = {};
-    if(localStorage.fajrantSettings) {
-      settingsAttributes = JSON.parse(localStorage.fajrantSettings);
-    }
-    let settings = Ember.Object.create(settingsAttributes);
-    this.set("settings", settings);
+  authorize: function() {
+    return this.set("settings", this.get("store").find("settings", "main"));
   }
+
 });
