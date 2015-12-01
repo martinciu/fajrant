@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Settings from '../models/settings';
 
 export default Ember.Service.extend({
-  settings: false,
+  settings: Settings.create(),
 
   init: function() {
     this._super(...arguments);
@@ -21,11 +22,9 @@ export default Ember.Service.extend({
   },
 
   load: function() {
-    let settingsAttributes = {};
     if(localStorage.fajrantSettings) {
-      settingsAttributes = JSON.parse(localStorage.fajrantSettings);
+      let settingsAttributes = JSON.parse(localStorage.fajrantSettings);
+      this.get("settings").setProperties(settingsAttributes);
     }
-    let settings = Ember.Object.create(settingsAttributes);
-    this.set("settings", settings);
   }
 });
