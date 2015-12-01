@@ -8,7 +8,7 @@ export default DS.JSONSerializer.extend({
       workspaceId: payload["data"]["default_wid"],
       name: payload["data"]["fullname"],
       email: payload["data"]["email"]
-    }
+    };
   },
 
   extractId: function(modelClass, payload) {

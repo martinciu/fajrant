@@ -8,7 +8,7 @@ export default DS.JSONAPIAdapter.extend({
   }.property("session.settings.togglApiKey"),
 
   urlForQueryRecord: function(query, modelName) {
-    query["user_agent"] = "fajrant"
+    query["user_agent"] = "fajrant";
     query["workspace_id"] = this.session.get("settings.workspaceId");
     query["user_ids"] = this.session.get("settings.userId");
 
