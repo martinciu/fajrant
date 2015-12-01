@@ -1,18 +1,19 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  seconds: DS.attr('number'),
+  total: DS.attr('duration'),
 
-  hours: function() {
-    return Math.round(this.get("minutes")/60);
-  }.property("seconds"),
-
-  minutes: function() {
-    return Math.round(this.get("seconds")/60/1000);
-  }.property("seconds"),
+  month: Ember.inject.service("month"),
 
   time: function() {
-    return this.get("hours") + ":" + (this.get("minutes") - this.get("hours")*60);
-  }.property("seconds")
+    let d = this.get("total")
+    return Math.round(d.asHours())+ ":" + d.minutes() + ":" + d.seconds();
+  }.property("total"),
+
+  status: function() {
+    return this.get("month.workDaysDone") + "/" + this.get("month.workDaysTotal");
+  }.property("total", "month"),
+
+
 
 });

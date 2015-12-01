@@ -3,7 +3,7 @@ import uuid from "ember-uuid/utils/uuid-generator";
 
 export default DS.JSONSerializer.extend({
   attrs: {
-    seconds: 'total_grand'
+    total: 'total_grand'
   },
 
   extractId: function(modelClass, payload) {
