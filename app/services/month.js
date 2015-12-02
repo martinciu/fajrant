@@ -2,11 +2,17 @@ import Ember from 'ember';
 import moment from 'moment';
 
 export default Ember.Service.extend({
-  startsOn: false,
+  currentDate: false,
 
   init: function() {
-    this.set("startsOn", moment().startOf("month"));
+    if (!this.get("currentDate")) {
+      this.set("currentDate", moment());
+    }
   },
+
+  startsOn: function() {
+    return moment(this.get("currentDate")).startOf("month");
+  }.property("currentDate"),
 
   workDaysDone: function() {
     return Math.floor(moment.duration(moment().format("x") - this.get("startsOn").format("x")).asDays());
