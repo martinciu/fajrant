@@ -34,7 +34,7 @@ export default Ember.Service.extend({
     let day = moment(from);
     let lastDay = moment(to);
     let workDays = 0;
-    while (day.month() === lastDay.month() && day.date() <= lastDay.date()) {
+    while(!day.isAfter(lastDay)) {
       if (day.isoWeekday() <= 5) {
         workDays += 1;
       }

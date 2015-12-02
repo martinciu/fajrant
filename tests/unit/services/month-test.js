@@ -12,22 +12,24 @@ test('it exists', function(assert) {
   assert.ok(service);
 });
 
-test('init set month set', function(assert) {
-  let service = this.subject({ currentDate: moment('2015-11-20') });
+test('init set month from date', function(assert) {
+  let currentDate = moment('2015-11-20');
+  let service = this.subject({ currentDate: currentDate });
 
-  assert.equal(service.get('startsOn').unix(), "1446332400");
+  assert.ok(service.get('startsOn').isSame(currentDate.startOf("month")));
 });
 
 test('init set current month', function(assert) {
   let service = this.subject();
 
-  assert.equal(service.get('startsOn').unix(), moment().startOf("month").unix());
+  assert.ok(service.get('startsOn').isSame(moment().startOf("month")));
 });
 
 test('it knows end of the month', function(assert) {
-  let service = this.subject({ currentDate: moment('2015-11-20') });
+  let currentDate = moment('2015-11-20');
+  let service = this.subject({ currentDate: currentDate });
 
-  assert.equal(service.get('endsOn').unix(), "1448924399");
+  assert.ok(service.get('endsOn').isSame(currentDate.endOf("month")));
 });
 
 test('it counts work days total', function(assert) {
