@@ -14,8 +14,12 @@ export default Ember.Service.extend({
     return moment(this.get("currentDate")).startOf("month");
   }.property("currentDate"),
 
+  endsOn: function() {
+    return moment(this.get("startsOn")).endOf("month");
+  }.property("startsOn"),
+
   workDaysDone: function() {
-    return Math.floor(moment.duration(moment().format("x") - this.get("startsOn").format("x")).asDays());
+    return this.countWorkDays(this.get("startsOn"), this.get("currentDate"));
   }.property("startsOn"),
 
   workDaysLeft: function() {
@@ -23,12 +27,20 @@ export default Ember.Service.extend({
   }.property("workDaysDone", "workDaysTotal"),
 
   workDaysTotal: function() {
-    let seconds = parseInt(this.get("endsOn").format("x")) - parseInt(this.get("startsOn").format("x"));
-    return Math.ceil(moment.duration(seconds).asDays());
+    return this.countWorkDays(this.get("startsOn"), this.get("endsOn"));
   }.property("startsOn", "endsOn"),
 
-  endsOn: function() {
-    return moment(this.get("startsOn")).endOf("month");
-  }.property("startsOn")
+  countWorkDays: function(from, to) {
+    let day = moment(from);
+    let lastDay = moment(to);
+    let workDays = 0;
+    while (day.month() === lastDay.month() && day.date() <= lastDay.date()) {
+      if (day.isoWeekday() <= 5) {
+        workDays += 1;
+      }
+      day.add(1, 'day');
+    }
+    return workDays;
+  },
 
 });

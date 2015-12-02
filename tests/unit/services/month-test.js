@@ -30,16 +30,16 @@ test('it knows end of the month', function(assert) {
   assert.equal(service.get('endsOn').format(), "2015-11-30T23:59:59+01:00");
 });
 
+test('it counts work days total', function(assert) {
+  let service = this.subject({ currentDate: moment('2015-11-20') });
+
+  assert.equal(service.get("workDaysTotal"), 21);
+});
+
 test('it counts work days done', function(assert) {
   let service = this.subject({ currentDate: moment('2015-11-20') });
 
   assert.equal(service.get("workDaysDone"), 15);
-});
-
-test('it counts work days total', function(assert) {
-  let service = this.subject({ currentDate: moment('2015-11-20') });
-
-  assert.equal(service.get("workDaysTotal"), 20);
 });
 
 test('it counts work days left', function(assert) {
@@ -47,6 +47,3 @@ test('it counts work days left', function(assert) {
 
   assert.equal(service.get("workDaysLeft"), 6);
 });
-
-
-// test('j  ')
