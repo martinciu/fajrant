@@ -19,7 +19,8 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'connect-src': "'self' https://toggl.com https://api.github.com"
+      'connect-src': "'self' https://toggl.com https://api.github.com",
+      'script-src': "'self' 'unsafe-inline'"
     },
   };
 
