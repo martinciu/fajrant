@@ -1,6 +1,18 @@
-Settings
+<div class='form-horizontal'>
+  <div class='form-group'>
 
-<form {{action "save" model on="submit"}}>
-  {{input value=model.togglApiKey}}
-  <button type="submit" class="btn">Save!</button>
-</form>
+    <form {{action "save" model on="submit"}} >
+      <label for="API Kay" class='sr-only'>API Kay</label>
+
+      <div class='col-md-6 col-xs-10'>
+        {{input class='form-control' placeholder='Add your key here' value=model.togglApiKey}}
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-default">Save!</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
