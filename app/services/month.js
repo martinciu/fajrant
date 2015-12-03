@@ -3,6 +3,7 @@ import moment from 'moment';
 
 export default Ember.Service.extend({
   currentDate: false,
+  hoursPerDay: 8,
 
   init: function() {
     if (!this.get("currentDate")) {
@@ -29,6 +30,14 @@ export default Ember.Service.extend({
   workDaysTotal: function() {
     return this.countWorkDays(this.get("startsOn"), this.get("endsOn"));
   }.property("startsOn", "endsOn"),
+
+  hoursScheduled: function() {
+    return this.get("workDaysDone") * this.get("hoursPerDay");
+  }.property("workDaysDone", "hoursPerDay"),
+
+  hoursTotal: function() {
+    return this.get("workDaysTotal") * this.get("hoursPerDay");
+  }.property("workDaysTotal", "hoursPerDay"),
 
   countWorkDays: function(from, to) {
     let day = moment(from);
