@@ -26,3 +26,18 @@ h2 {
   /* Set the fixed height of the footer here */
   height: 60px;
 }
+
+.yep {
+  background-color: #008080;
+}
+
+.nope {
+  background-color: #800000;
+}
+
+a {
+  color: #e6e6e6 !important;
+}
+a a:hover {
+  text-decoration: underline;
+}
