@@ -3,13 +3,13 @@
 
   Create more files in this directory to define additional factories.
 */
-import Mirage/*, {faker} */ from 'ember-cli-mirage';
+import Mirage, {faker} from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
-  id: 7,
-  name: "James Bond",
-  email: "007@mi6.gov.uk",
-  workspaceId: 7
+  name() { return faker.name.findName(); },
+  email() { return faker.internet.email(); },
+  workspaceId() { return faker.random.number(); },
+  apiKey: ""
 
   // name: 'Pete',                         // strings
   // age: 20,                              // numbers

@@ -1,3 +1,5 @@
+import Mirage from 'ember-cli-mirage';
+
 export default function() {
 
   // These comments are here to help you get started. Feel free to delete them.
@@ -12,7 +14,11 @@ export default function() {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
   this.get('v8/me', function(db, request) {
-    let user = db.users.find(7);
+    let apiKey = request.requestHeaders["Authorization"].split(" ")[1];
+    let user = db.users.where({ apiKey: apiKey })[0];
+    if(!user) {
+      return new Mirage.Response(403, {}, {});
+    }
     return {
       data: {
         id: user.id,
@@ -21,8 +27,15 @@ export default function() {
       }
     };
   });
+
   this.namespace = 'reports/api';    // make this `api`, for example, if your API is namespaced
+
   this.get('v2/summary', function(db, request) {
+    let apiKey = request.requestHeaders["Authorization"].split(" ")[1];
+    let user = db.users.where({ apiKey: apiKey })[0];
+    if(!user) {
+      return new Mirage.Response(403, {}, {});
+    }
     return {
       total_grand: 54487000
     };
