@@ -36,9 +36,7 @@ export default function() {
     if(!user) {
       return new Mirage.Response(403, {}, {});
     }
-    return {
-      total_grand: 54487000
-    };
+    return db.summaries.where({ apiKey: apiKey})[0];
   });
   /*
     Route shorthand cheatsheet
