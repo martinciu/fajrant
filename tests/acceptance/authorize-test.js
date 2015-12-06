@@ -15,6 +15,7 @@ test("authorize lazybones", function(assert) {
   andThen(function() {
     assert.equal(currentURL(), "/");
     assert.equal(find("h1").text(), "Nope :(");
+    assert.ok(find(".container").hasClass("nope"));
   });
 });
 
@@ -30,5 +31,6 @@ test("authorize workoholic", function(assert) {
   andThen(function() {
     assert.equal(currentURL(), "/");
     assert.equal(find("h1").text(), "Yep!");
+    assert.ok(find(".container").hasClass("yep"));
   });
 });
