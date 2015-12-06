@@ -1,0 +1,105 @@
+{
+  "app/*.js": {
+    "type": "app"
+  },
+  "app/models/*.js": {
+    "type": "model",
+    "test": "tests/unit/models/%s-test.js",
+    "related": ["app/controllers/%s.js", "app/controllers/%{source|plural}.js", "app/controllers/%{source|plural}/index.js"],
+    "alternate": ["app/routes/%s.js", "app/routes/%{source|plural}.js", "app/routes/%{source|plural}/index.js"],
+    "template": "var %S = DS.Model.extend({\n\t\n});\n\nexport default %S;"
+  },
+  "app/routes/**.js": {
+    "type": "route",
+    "alternate": ["app/models/%{source|mname}.js"],
+    "related": ["app/controllers/%s.js", "app/templates/%s.hbs"],
+    "test": "tests/unit/routes/%s-test.js",
+    "template": "var %SRoute = Ember.Route.extend({\n\t\n});\n\nexport default %SRoute;"
+  },
+  "app/controllers/**.js": {
+    "type": "controller",
+    "alternate": ["app/routes/%s.js", "app/models/%{source|mname}.js"],
+    "related": ["app/templates/%s.hbs"],
+    "test": "tests/unit/controllers/%s-test.js",
+    "template": "var %SController = Ember.%{source|cname}.extend({\n\t\n});\n\nexport default %SController;"
+  },
+  "app/templates/**.hbs": {
+    "type": "template",
+    "alternate": ["app/routes/%s.js", "app/models/%{source|mname}.js"],
+    "related": ["app/controllers/%s.js"],
+    "template": ""
+  },
+  "app/helpers/*.js": {
+    "type": "helper",
+    "test": "tests/unit/helpers/%s-test.js",
+    "template": "var %SHelper = function(value) {\n\t\n};\n\nEmber.Handlebars.helper('%s', %SHelper);\n\nexport default %SHelper;"
+  },
+  "app/components/*.js": {
+    "type": "component",
+    "related": "app/templates/components/%s.hbs",
+    "test": "tests/components/%s-test.js",
+    "template": "var %SComponent = Ember.Component.extend({\n\t\n});\n\nexport default %SComponent;"
+  },
+  "app/services/*.js": {
+    "type": "service",
+    "test": "tests/unit/services/%s-test.js",
+    "related": "app/initializers/%s.js",
+  },
+  "app/initializers/*.js": {
+    "type": "initializer",
+    "test": "tests/unit/initializers/%s-test.js",
+    "related": "app/services/%s.js",
+  },
+  "app/adapters/*.js": {
+    "type": "adapter",
+    "test": "tests/unit/adapters/%s-test.js",
+    "related": ["app/models/%s.js", "app/serializers/%s.js"]
+  },
+  "app/serializers/*.js": {
+    "type": "serializer",
+    "test": "tests/unit/serializers/%s-test.js",
+    "related": ["app/models/%s.js", "app/adapeters/%s.js"]
+  },
+
+  "app/styles/*.css": {
+    "type": "stylesheet"
+  },
+  "app/styles/*.scss": {
+    "type": "stylesheet"
+  },
+  "app/styles/*.sass": {
+    "type": "stylesheet"
+  },
+
+  "tests/unit/initializers/*-test.js": {
+    "type": "test",
+    "alternate": "app/initializers/%s.js"
+  },
+  "tests/unit/models/*-test.js": {
+    "type": "test",
+    "alternate": "app/models/%s.js"
+  },
+  "tests/unit/routes/*-test.js": {
+    "type": "test",
+    "alternate": "app/routes/%s.js"
+  },
+  "tests/unit/controllers/*-test.js": {
+    "type": "test",
+    "alternate": "app/controllers/%s.js"
+  },
+  "tests/unit/components/*-test.js": {
+    "type": "test",
+    "alternate": "app/components/%s.js"
+  },
+  "tests/unit/services/*-test.js": {
+    "type": "test",
+    "alternate": "app/services/%s.js"
+  },
+  "tests/unit/helpers/*-test.js": {
+    "type": "test",
+    "alternate": "app/helpers/%s.js"
+  }
+
+
+
+}
