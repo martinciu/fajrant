@@ -20,7 +20,8 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'connect-src': "'self' https://toggl.com https://api.github.com",
-      'script-src': "'self' 'unsafe-inline'"
+      'script-src': "'self' 'unsafe-inline'",
+      'font-src': "'self' http://fonts.gstatic.com",
     },
   };
 
