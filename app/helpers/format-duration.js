@@ -2,14 +2,12 @@ import Ember from 'ember';
 import moment from 'moment';
 
 export function formatDuration(params) {
-  let duration = params[0];
+  let duration = moment.duration(Math.abs(params[0].asMilliseconds()));
   let hours = Math.round(duration.asHours());
   let minutes = duration.minutes();
   let minutesString = minutes < 10 ? `0${minutes}`:`${minutes}`;
-  let seconds = duration.seconds();
-  let secondsString = seconds < 10 ? `0${seconds}`:`${seconds}`;
 
-  return `${hours}:${minutesString}:${secondsString}`;
+  return `${hours}h${minutesString}m`;
 }
 
 export default Ember.Helper.helper(formatDuration);

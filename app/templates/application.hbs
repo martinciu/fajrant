@@ -1,11 +1,11 @@
-<div class='nope' id='app'>
- <div class='container fill-height-or-more' id='settings'>
+<div class='{{statusClass}}' id='app'>
+  <div class='container fill-height-or-more' id='settings'>
     <div class='row'>
       <div class='col-md-12 text-right'>
-        {{#link-to 'settings'}}<span class="glyphicon glyphicon-cog"></span>{{/link-to}}  
+        {{#link-to 'settings'}}<span class="glyphicon glyphicon-cog"></span>{{/link-to}}
       </div>
-    </div> 
-   </div>
+    </div>
+  </div>
 
   <div class='container fill-height-or-more' id='content'>
     <div class='row'>
@@ -13,14 +13,14 @@
         <h2>Can I go to the beach?</h2>
         <p class='lead'>I don't know yet. Plese put your API kay below so I can check it.</p>
       </div>
-    </div> 
+    </div>
     {{outlet}}
   </div>
-  
+
   <div class='container' id='footer'>
     <div class='col-md-12'>
       <p class='text-center'>Carefully crafted by <a href="https://github.com/martinciu" target='blank'>martinciu</a> and <a href="http://paulinagorecka.com" target='blank'>paulina</a></p>
     </div>
   </div>
-  
+
 </div>

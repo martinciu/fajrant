@@ -49,3 +49,15 @@ test('it counts work days left', function(assert) {
 
   assert.equal(service.get("workDaysLeft"), 6);
 });
+
+test('it counts hoursScheduled', function(assert) {
+  let service = this.subject({ currentDate: moment('2015-11-20') });
+
+  assert.equal(service.get("hoursScheduled"), 120);
+});
+
+test('it counts hoursTotal', function(assert) {
+  let service = this.subject({ currentDate: moment('2015-11-20') });
+
+  assert.equal(service.get("hoursTotal"), 168);
+});

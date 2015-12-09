@@ -9,5 +9,13 @@ export default Ember.Route.extend({
   model: function() {
     let startOfTheMonth = this.get("month.startsOn").format("YYYY-MM-DD");
     return this.store.queryRecord('toggl-summary', { since: startOfTheMonth });
-  }
+  },
+
+  actions: {
+    error: function(error, transition) {
+      if(error) {
+        return this.transitionTo("settings");
+      }
+    }
+  },
 });
