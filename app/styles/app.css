@@ -4,33 +4,69 @@ html {
 }
 
 body {
-  margin-top: 150px;
   width: 100%;
-  background-color: #800080;
   color: #e6e6e6;
+ margin: 0 0 60px 0;
+}
+
+#settings .glyphicon {
+  margin-top: 15px;
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  padding: 20px 0;
+  width: 100%;
+  height: 60px;
+  background-color: inherit;
 }
 
 h1 {
   font-size: 10em;
+  margin-top: 30px;
 }
 
 h2 {
   font-size: 3em;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  padding: 20px 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+a {
+  color: #e6e6e6 !important;
+}
+a a:hover {
+  text-decoration: underline;
 }
 
+.glyphicon.glyphicon-cog {
+    font-size: 3em;
+}
+
+#settings:hover {
+  color: #ccc;
+}
+
+/* COLORS */
+
 .yep {
-  background-color: green;
+  background-color: #008080;
 }
 
 .nope {
-  background-color: red;
+  background-color: #800000;
+}
+
+.unknown {
+  background-color: #800080;
+}
+
+/* BUTTON */
+.btn {
+  font-weight: bold;
+  color: #4c4c4c;
+}
+
+.btn:hover, .btn:focus, .btn.focus {
+  text-decoration: none;
+  color: #4c4c4c;
 }
