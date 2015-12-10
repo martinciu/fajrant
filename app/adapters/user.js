@@ -3,7 +3,18 @@ import Ember from 'ember';
 import ENV from 'fajrant/config/environment';
 
 export default DS.Adapter.extend({
-  namespace: `fajrant-${ENV.environment}-settings`,
+  namespace: `fajrant-${ENV.environment}-user`,
+
+  queryRecord: function(store, type, query) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
+      if (localStorage[this.namespace]) {
+        let data = JSON.parse(localStorage[this.namespace]);
+        return Ember.run(null, resolve, data);
+      } else {
+        return Ember.run(null, reject);
+      }
+    });
+  },
 
   findRecord: function(store, type, id, snapshot) {
     return new Ember.RSVP.Promise((resolve, reject) => {

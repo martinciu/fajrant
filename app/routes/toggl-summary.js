@@ -2,8 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   month: Ember.inject.service("month"),
+
   beforeModel: function() {
-    return this.get("session").authorize();
+    this.get("session").authorize();
   },
 
   model: function() {
@@ -13,9 +14,7 @@ export default Ember.Route.extend({
 
   actions: {
     error: function(error, transition) {
-      if(error) {
-        return this.transitionTo("settings");
-      }
+      return this.transitionTo("api-key");
     }
   },
 });

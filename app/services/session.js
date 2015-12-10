@@ -1,11 +1,31 @@
 import Ember from 'ember';
+import ENV from 'fajrant/config/environment';
 
 export default Ember.Service.extend({
-  store: Ember.inject.service("store"),
-  settings: null,
+  store: Ember.inject.service(),
+  namespace: `fajrant-${ENV.environment}-session`,
+  user: null,
+
+  apiKey: Ember.computed({
+    get(key) {
+      return localStorage[this.namespace];
+    },
+    set(key, value) {
+      localStorage[this.namespace] = value;
+      return value;
+    }
+  }),
 
   authorize: function() {
-    return this.set("settings", this.get("store").find("settings", "main"));
+    return new Ember.RSVP.Promise((resolve, reject) => {
+      this.get("store").queryRecord("user", { apiKey: this.get("apiKey")}).then((user) => {
+        this.set("user", user);
+        Ember.run(null, resolve, user);
+      },
+      () => {
+        Ember.run(null, reject);
+      });
+    });
   }
 
 });
