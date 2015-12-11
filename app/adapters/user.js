@@ -9,9 +9,9 @@ export default DS.Adapter.extend({
     return new Ember.RSVP.Promise((resolve, reject) => {
       if (localStorage[this.namespace]) {
         let data = JSON.parse(localStorage[this.namespace]);
-        return Ember.run(null, resolve, data);
+        Ember.run(null, resolve, data);
       } else {
-        return Ember.run(null, reject);
+        Ember.run(null, reject);
       }
     });
   },

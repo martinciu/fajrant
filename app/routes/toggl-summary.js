@@ -4,7 +4,7 @@ export default Ember.Route.extend({
   month: Ember.inject.service("month"),
 
   beforeModel: function() {
-    this.get("session").authorize();
+    return this.get("session").authorize();
   },
 
   model: function() {
