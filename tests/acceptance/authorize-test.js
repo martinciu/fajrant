@@ -8,7 +8,7 @@ test("authorize lazybones", function(assert) {
   server.create("user", { apiKey: apiKey });
   server.create("summary", { apiKey: apiKey, total_grand: 54487000});
 
-  visit("/settings");
+  visit("/api-key");
   fillIn("input", apiKey);
   click("button[type=submit]");
 
@@ -24,7 +24,7 @@ test("authorize workoholic", function(assert) {
   server.create("user", { apiKey: apiKey });
   server.create("summary", { apiKey: apiKey, total_grand: 10*54487000});
 
-  visit("/settings");
+  visit("/api-key");
   fillIn("input", apiKey);
   click("button[type=submit]");
 

@@ -1,0 +1,17 @@
+<div class='form-horizontal'>
+  <div class='form-group'>
+
+    <form {{action "save" model on="submit"}} >
+      <label for="API Kay" class='sr-only'>API Kay</label>
+
+      <div class='col-md-6 col-xs-10'>
+        {{input class='form-control' placeholder='Add your key here' value=model.apiKey}}
+      </div>
+
+      <div>
+        <button type="submit" class="btn btn-default">Save!</button>
+      </div>
+    </form>
+
+  </div>
+</div>

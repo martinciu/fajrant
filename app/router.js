@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('toggl-summary', { path: "/"});
-  this.route('settings');
+  this.route('api-key');
 });
 
 export default Router;
