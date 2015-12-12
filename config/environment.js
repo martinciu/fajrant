@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'fajrant',
     environment: environment,
+    firebase: 'https://YOUR-FIREBASE-NAME.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -19,10 +20,11 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'connect-src': "'self' https://toggl.com https://api.github.com",
+      'connect-src': "'self' https://toggl.com https://auth.firebase.com wss://*.firebaseio.com",
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self' http://fonts.gstatic.com",
     },
+    firebase: 'https://fajrant-development.firebaseio.com'
   };
 
   if (environment === 'development') {
