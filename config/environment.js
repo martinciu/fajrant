@@ -24,7 +24,6 @@ module.exports = function(environment) {
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self' http://fonts.gstatic.com",
     },
-    firebase: 'https://fajrant-development.firebaseio.com'
   };
 
   if (environment === 'development') {
@@ -34,6 +33,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['ember-cli-mirage'] = { enabled: false };
+    ENV.firebase = 'https://fajrant-development.firebaseio.com'
   }
 
   if (environment === 'test') {
@@ -46,10 +46,11 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.firebase = 'https://fajrant-test.firebaseio.com'
   }
 
   if (environment === 'production') {
-
+    ENV.firebase = 'https://fajrant-production.firebaseio.com'
   }
 
   return ENV;
