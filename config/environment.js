@@ -20,7 +20,7 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'connect-src': "'self' https://toggl.com https://auth.firebase.com wss://*.firebaseio.com",
+      'connect-src': "'self' https://toggl.com/api/v8/me https://toggl.com https://auth.firebase.com wss://*.firebaseio.com https://fajrant-production.firebaseapp.com",
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self' http://fonts.gstatic.com",
     },
