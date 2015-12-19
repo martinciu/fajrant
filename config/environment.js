@@ -4,7 +4,6 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'fajrant',
     environment: environment,
-    firebase: 'https://YOUR-FIREBASE-NAME.firebaseio.com/',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
@@ -20,7 +19,7 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
-      'connect-src': "'self' https://toggl.com/api/v8/me https://toggl.com https://auth.firebase.com wss://*.firebaseio.com https://fajrant-production.firebaseapp.com",
+      'connect-src': "'self' https://toggl.com/api/v8/me https://toggl.com http://fajrant-api.dev",
       'script-src': "'self' 'unsafe-inline'",
       'font-src': "'self' http://fonts.gstatic.com",
     },
@@ -33,7 +32,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['ember-cli-mirage'] = { enabled: false };
-    ENV.firebase = 'https://fajrant-development.firebaseio.com'
+    ENV.apiHost = 'http://fajrant-api.dev'
   }
 
   if (environment === 'test') {
@@ -46,11 +45,12 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-    ENV.firebase = 'https://fajrant-test.firebaseio.com'
+    // ENV.apiHost = 'http://fajrant-api.test'
+    ENV.apiHost = 'http://fajrant-api.test'
   }
 
   if (environment === 'production') {
-    ENV.firebase = 'https://fajrant-production.firebaseio.com'
+    ENV.apiHost = 'http://fajrant-api.com'
   }
 
   return ENV;
