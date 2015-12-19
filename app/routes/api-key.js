@@ -12,13 +12,13 @@ export default Ember.Route.extend({
       let apiKey = model.get("apiKey");
       return this.get("authenticator").authenticate(apiKey).then(
         (togglUser) => {
-          return this.store.queryRecord("user", { apiKey: apiKey }).then(
+          return this.store.find("user", apiKey).then(
             (user) => {
               return this.transitionTo("toggl-summary");
             },
             () => {
               let newUser = this.store.createRecord("user", {
-                apiKey: apiKey,
+                id: apiKey,
                 workspaceId: togglUser.get("workspaceId"),
                 userId: togglUser.get("id")
               });

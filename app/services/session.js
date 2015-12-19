@@ -18,7 +18,7 @@ export default Ember.Service.extend({
 
   authorize: function() {
     return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get("store").queryRecord("user", { apiKey: this.get("apiKey")}).then((user) => {
+      this.get("store").find("user", this.get("apiKey")).then((user) => {
         this.set("user", user);
         Ember.run(null, resolve, user);
       },
