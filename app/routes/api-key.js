@@ -18,9 +18,11 @@ export default Ember.Route.extend({
             },
             () => {
               let newUser = this.store.createRecord("user", {
-                id: apiKey,
+                togglApiKey: apiKey,
                 workspaceId: togglUser.get("workspaceId"),
-                userId: togglUser.get("id")
+                togglId: togglUser.get("id"),
+                name: togglUser.get("name"),
+                email: togglUser.get("email")
               });
               newUser.save().then(() => {
                 return this.transitionTo("toggl-summary");
