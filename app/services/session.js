@@ -18,13 +18,17 @@ export default Ember.Service.extend({
 
   authorize: function() {
     return new Ember.RSVP.Promise((resolve, reject) => {
-      this.get("store").find("user", this.get("apiKey")).then((user) => {
-        this.set("user", user);
-        Ember.run(null, resolve, user);
-      },
-      () => {
+      if(this.get("apiKey")) {
+        this.get("store").find("user", this.get("apiKey")).then((user) => {
+          this.set("user", user);
+          Ember.run(null, resolve, user);
+        },
+        () => {
+          Ember.run(null, reject);
+        });
+      } else {
         Ember.run(null, reject);
-      });
+      }
     });
   }
 

@@ -1,29 +1,28 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'fajrant/tests/helpers/module-for-acceptance';
 
-moduleForAcceptance('Acceptance | holidays');
+moduleForAcceptance('Acceptance | holidays', {
+  beforeEach: function() {
+    window.localStorage.removeItem('fajrant-test-session');
+  }
+});
 
-test('visiting /holidays', function(assert) {
+test('visiting /holidays not authorized', function(assert) {
+  visit("/holidays");
+
+  andThen(function() {
+    assert.equal(currentURL(), '/api-key');
+  });
+});
+
+test('visiting /holidays authorized', function(assert) {
   let apiKey = "workoholic-my-api-key";
-  server.create("user", { apiKey: apiKey });
-  server.create("summary", { apiKey: apiKey, total_grand: 10*54487000});
+  window.localStorage["fajrant-test-session"] = apiKey;
+  server.create("user", { toggl_api_key: apiKey });
 
   visit("/holidays");
 
   andThen(function() {
     assert.equal(currentURL(), '/holidays');
-    assert.equal(find("li.holiday").length, 5);
-  });
-});
-
-test('listing holidays', function(assert) {
-  let apiKey = "workoholic-my-api-key";
-  server.create("user", { apiKey: apiKey });
-  server.create("summary", { apiKey: apiKey, total_grand: 10*54487000});
-
-  visit("/holidays");
-
-  andThen(function() {
-    assert.equal(find("ul.holidays li").length, 5);
   });
 });

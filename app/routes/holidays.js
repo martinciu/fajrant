@@ -3,14 +3,18 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   session: Ember.inject.service(),
 
+  beforeModel: function() {
+    return this.get("session").authorize();
+  },
+
   model: function() {
     return this.get("session.user.holidays");
-    // return [
-    //   { date: "1 dzien" },
-    //   { date: "2 dzien" },
-    //   { date: "3 dzien" },
-    //   { date: "4 dzien" },
-    //   { date: "5 dzien" }
-    // ];
-  }
+  },
+
+  actions: {
+    error: function(error, transition) {
+      return this.transitionTo("api-key");
+    }
+  },
+
 });
