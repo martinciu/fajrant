@@ -5,8 +5,8 @@ moduleForAcceptance('Acceptance | authorize');
 
 test("authorize lazybones", function(assert) {
   let apiKey = "lazy-my-api-key";
-  server.create("user", { apiKey: apiKey });
-  server.create("summary", { apiKey: apiKey, total_grand: 54487000});
+  server.create("toggl-user", { apiKey: apiKey });
+  server.create("toggl-summary", { apiKey: apiKey, total_grand: 54487000});
 
   visit("/api-key");
   fillIn("input", apiKey);
@@ -21,8 +21,8 @@ test("authorize lazybones", function(assert) {
 
 test("authorize workoholic", function(assert) {
   let apiKey = "workoholic-my-api-key";
-  server.create("user", { apiKey: apiKey });
-  server.create("summary", { apiKey: apiKey, total_grand: 10*54487000});
+  server.create("toggl-user", { apiKey: apiKey });
+  server.create("toggl-summary", { apiKey: apiKey, total_grand: 10*54487000});
 
   visit("/api-key");
   fillIn("input", apiKey);
